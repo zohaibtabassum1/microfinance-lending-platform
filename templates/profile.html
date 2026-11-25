@@ -5,18 +5,22 @@
 </head>
 <body>
 
-    <h1>Borrower Profile</h1>
+    <h1>Borrower Profiles</h1>
 
-    <h3>Personal Information</h3>
+    {% for borrower in borrowers %}
 
-    <p>Name: Test User</p>
-    <p>Email: testuser@example.com</p>
-    <p>City: TestCity</p>
+        <div>
+            <h2>{{ borrower.name }}</h2>
 
-    <h3>Loan Information</h3>
+            <p>Email: {{ borrower.email }}</p>
+            <p>City: {{ borrower.city }}</p>
+            <p>Loan Amount: Rs. {{ borrower.loan_amount }}</p>
+            <p>Loan Status: {{ borrower.loan_status }}</p>
+        </div>
 
-    <p>Loan Status: Pending</p>
-    <p>Loan Amount: Rs. 50,000</p>
+        <hr>
+
+    {% endfor %}
 
 </body>
 </html>

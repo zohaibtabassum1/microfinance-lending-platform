@@ -1,0 +1,26 @@
+[
+    {
+        "id": 1,
+        "name": "Uzair Khan",
+        "email": "ali@example.com",
+        "city": "Islamabad",
+        "loan_amount": 50000,
+        "loan_status": "Pending"
+    },
+    {
+        "id": 2,
+        "name": "Ahmed Raza",
+        "email": "ahmed@example.com",
+        "city": "Rawalpindi",
+        "loan_amount": 75000,
+        "loan_status": "Approved"
+    },
+    {
+        "id": 3,
+        "name": "Usman Tariq",
+        "email": "usman@example.com",
+        "city": "Lahore",
+        "loan_amount": 30000,
+        "loan_status": "Pending"
+    }
+]
