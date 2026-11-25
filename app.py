@@ -6,7 +6,7 @@ import os
 from dotenv import load_dotenv
 
 # Importing Flask
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect, url_for
 
 # Importing from werkzeug
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -18,11 +18,16 @@ app = Flask(__name__)
 
 # Get demo password from .env file
 demo_password = os.environ.get("DEMO_PASSWORD")
+
+if not demo_password:
+    raise RuntimeError("DEMO_PASSWORD is missing. Check your .env file.")
+    
 # Sample user with a hashed password
 sample_user = {
     "email": "test@example.com",
-    "password": generate_password_hash(demo_password) if demo_password else None
+    "password": generate_password_hash(demo_password)
 }
+
 
 # Creating our Home Page route
 @app.route("/")
@@ -43,7 +48,7 @@ def login():
         and email == sample_user["email"]
         and check_password_hash(sample_user["password"], password)
         ):
-            return "Login successful!"
+            return redirect(url_for("profile"))
         else:
             return "Invalid email or password!"
 
