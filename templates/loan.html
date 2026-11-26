@@ -8,6 +8,7 @@
     <h1>Loan Application Form</h1>
 
    <form method="POST" action="/loan">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
 
     <label>Full Name:</label>
     <input type="text" name="full_name" placeholder="Enter your full name" required>

@@ -7,6 +7,7 @@ from dotenv import load_dotenv
 
 # Importing Flask
 from flask import Flask, render_template, request, redirect, url_for
+from flask_wtf.csrf import CSRFProtect
 
 # Importing from werkzeug
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -15,6 +16,12 @@ load_dotenv()
 
 # Create our Flask application
 app = Flask(__name__)
+
+# Secret Key
+app.config["SECRET_KEY"] = os.environ.get("SECRET_KEY")
+if not app.config["SECRET_KEY"]:
+    raise RuntimeError("SECRET_KEY is missing. Check your .env file.")
+CSRFProtect(app)
 
 # Get demo password from .env file
 demo_password = os.environ.get("DEMO_PASSWORD")
