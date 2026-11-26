@@ -54,6 +54,8 @@ python -m pip install -r requirements.txt
 
 ### 5. Configure environment variables
 
+**Important: This step is mandatory.** The application requires a `.env` file before it can run. It contains the demo login password and Flask secret key.
+
 Create a file named `.env` in the project root directory.
 
 Add the following:
@@ -63,7 +65,7 @@ DEMO_PASSWORD=your_own_demo_password
 SECRET_KEY=your_generated_secret_key
 ```
 
-Generate a secure secret key by running:
+Generate a secure secret key by running this command in your activated `.venv` PowerShell terminal:
 
 ```powershell
 python -c "import secrets; print(secrets.token_hex(32))"
@@ -73,7 +75,11 @@ Copy the generated key into the `SECRET_KEY` variable in your `.env` file.
 
 Choose your own demo password and set it as `DEMO_PASSWORD`.
 
-**Important:** The `.env` file contains private configuration values. Never upload it to GitHub or share its contents.
+**What happens if you skip this step?**
+
+The application will not start. It will display an error if `DEMO_PASSWORD` or `SECRET_KEY` is missing. The secret key is required for Flask-WTF CSRF protection to validate form submissions correctly.
+
+**Security note:** The `.env` file contains private configuration values. Never upload it to GitHub or share its contents. It is excluded through `.gitignore`.
 
 ### 6. Generate sample borrower data
 
@@ -100,6 +106,12 @@ Use the following email address:
 `test@example.com`
 
 The demo password is the value you configured as `DEMO_PASSWORD` in your local `.env` file.
+
+### Demo Authentication Limitations
+
+This project uses a single demo account stored in application memory. Its password hash is generated at application startup using Werkzeug's password hashing functions and the `DEMO_PASSWORD` environment variable.
+
+No user records or password hashes are stored permanently in a database or file. This is a simplified authentication implementation for educational demonstration purposes, not a production-ready user management system.
 
 ## Security Testing
 
