@@ -84,8 +84,15 @@ def loan():
 @app.route("/profile")
 def profile():
 
-    with open("borrowers.json", "r", encoding="utf-8") as file:
-        borrowers = json.load(file)
+    try:
+        with open("borrowers.json", "r", encoding="utf-8") as file:
+            borrowers = json.load(file)
+
+    except FileNotFoundError:
+        return "Borrower data file is missing. Run 'py generate_data.py' to create it.", 500
+
+    except json.JSONDecodeError:
+        return "Borrower data file contains invalid JSON.", 500
 
     return render_template("profile.html", borrowers=borrowers)
 
