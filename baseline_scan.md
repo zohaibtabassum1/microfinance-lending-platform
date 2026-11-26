@@ -232,3 +232,15 @@ Both initial and updated pip-audit scans reported no known vulnerabilities in th
 CSRF protection was also tested manually. Requests without a valid CSRF token were rejected, while normal browser form submissions worked successfully.
 
 **Security note:** These scans and manual tests provide a baseline security assessment for this educational project. They do not guarantee that the application is completely secure or production-ready.
+
+## Known Security Gap: Missing Authentication Check on Profile Route
+
+During supervisor review, a broken access control issue was identified in the `/profile` route.
+
+Currently, the route does not verify whether a user is logged in before displaying borrower information. This means someone can access `/profile` directly without authenticating.
+
+**Risk:** Unauthorized users may view borrower information.
+
+**Status:** Identified and documented, but intentionally not fixed in this task, as the supervisor confirmed it is not a completion requirement.
+
+**Future improvement:** Add server-side authentication checks to protected routes so only authenticated users can access borrower information. This issue should be addressed in the next security-focused task.
