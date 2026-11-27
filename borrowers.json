@@ -1,6 +1,7 @@
 [
     {
         "id": 1,
+        "data_type": "fictional_sample",
         "name": "Uzair Khan",
         "email": "ali@example.com",
         "city": "Islamabad",
@@ -9,6 +10,7 @@
     },
     {
         "id": 2,
+        "data_type": "fictional_sample",
         "name": "Ahmed Raza",
         "email": "ahmed@example.com",
         "city": "Rawalpindi",
@@ -17,6 +19,7 @@
     },
     {
         "id": 3,
+        "data_type": "fictional_sample",
         "name": "Usman Tariq",
         "email": "usman@example.com",
         "city": "Lahore",
